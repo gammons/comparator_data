@@ -12,8 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :attributes %><br>
-    <%= f.text_field :attributes %>
+  <% @attributes.each do |attribute| %>
+    <label><%= attribute.name  %></label>
+    <input type='text' name="item_attributes[<%= attribute.key -%>]" value="<%= @item.item_attributes[attribute.key] -%>" />
+  <% end -%>
+
   </div>
   <div class="actions">
     <%= f.submit %>

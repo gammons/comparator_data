@@ -22,6 +22,7 @@ end
 module ComparatorData
   class Application < Rails::Application
     config.time_zone = "Eastern Time (US & Canada)"
+    config.active_record.whitelist_attributes = false
     
     config.generators do |g|
       g.test_framework :rspec, fixture: false

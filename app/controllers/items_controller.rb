@@ -15,18 +15,21 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @attributes = Attribute.all
   end
 
   # GET /items/1/edit
   def edit
+    @attributes = Attribute.all
   end
 
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(params[:item])
 
     respond_to do |format|
+      @item.item_attributes = params[:item_attributes]
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render action: 'show', status: :created, location: @item }
@@ -41,7 +44,8 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
-      if @item.update(item_params)
+      @item.item_attributes = params[:item_attributes]
+      if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
@@ -68,7 +72,7 @@ class ItemsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.require(:item).permit(:attributes)
-    end
+    # def item_params
+    #   params.require(:item).permit(:attributes)
+    # end
 end
