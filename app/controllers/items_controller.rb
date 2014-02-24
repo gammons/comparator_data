@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @item.item_attributes = {}
     @attributes = Attribute.all
   end
 

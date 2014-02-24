@@ -11,10 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
   <% @attributes.each do |attribute| %>
-    <label><%= attribute.name  %></label>
-    <input type='text' name="item_attributes[<%= attribute.key -%>]" value="<%= @item.item_attributes[attribute.key] -%>" />
+    <div class="field">
+      <label><%= attribute.name  %></label>
+      <input type='text' name="item_attributes[<%= attribute.key -%>]" value="<%= @item.item_attributes[attribute.key] -%>" />
+    </div>
   <% end -%>
 
   </div>
