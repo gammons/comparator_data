@@ -69,6 +69,6 @@ class AttributesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attribute_params
-      params.require(:attribute).permit(:name, :key, :compare, :format, :sortable)
+      params.require(:attribute).permit(:name, :key, :compare, :format, :sortable, :selected)
     end
 end

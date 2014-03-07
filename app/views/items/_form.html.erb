@@ -12,14 +12,14 @@
   <% end %>
 
   <% @attributes.each do |attribute| %>
-    <div class="field">
+    <div class="form-group">
       <label><%= attribute.name  %></label>
-      <input type='text' name="item_attributes[<%= attribute.key -%>]" value="<%= @item.item_attributes[attribute.key] -%>" />
+      <input class='form-control <%= attribute.key %>' type='text' name="item_attributes[<%= attribute.key -%>]" value="<%= @item.item_attributes[attribute.key] -%>" />
     </div>
   <% end -%>
 
-  </div>
   <div class="actions">
     <%= f.submit %>
+  </div>
   </div>
 <% end %>

@@ -5,11 +5,47 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.all
+    @attributes = Attribute.all
+    respond_to do |format|
+      format.html { render action: 'index'}
+      format.json do
+
+        json = []
+        item_data = Item.all.map do |item|
+          attrs = item.item_attributes.merge(id: item.id)
+          ret = {}
+          attrs.each do |k,v|
+            attr = Attribute.where(key: k).first
+            next if attr.nil?
+            case attr.format
+            when 'number', 'currency'
+              if i = v.index('.') and i >= 0
+                ret[k] = v.to_f
+              else
+                ret[k] = v.to_i
+              end
+            else
+              ret[k] = v
+            end
+          end
+          json << ret
+        end
+
+        j = {
+          header: Attribute.all,
+          data: json
+        }
+        render json: j
+      end
+    end
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+  end
+
+  def json
   end
 
   # GET /items/new
