@@ -61,6 +61,18 @@ class AttributesController < ApplicationController
     end
   end
 
+  def sort
+    @thing = Attribute.find(params[:id])
+
+    # .attributes is a useful shorthand for mass-assigning
+    # values via a hash
+    @thing.attributes = attribute_params
+    @thing.save
+
+    # this action will be called via ajax
+    render nothing: true
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attribute
@@ -69,6 +81,6 @@ class AttributesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attribute_params
-      params.require(:attribute).permit(:name, :key, :compare, :format, :sortable, :selected)
+      params.require(:attribute).permit(:name, :key, :compare, :format, :sortable, :selected, :position)
     end
 end

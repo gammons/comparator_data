@@ -16,13 +16,16 @@ class ItemsController < ApplicationController
           ret = {}
           attrs.each do |k,v|
             attr = Attribute.where(key: k).first
-            next if attr.nil?
-            case attr.format
-            when 'number', 'currency'
-              if i = v.index('.') and i >= 0
-                ret[k] = v.to_f
+            if attr
+              case attr.format
+              when 'number', 'currency'
+                if i = v.index('.') and i >= 0
+                  ret[k] = v.to_f
+                else
+                  ret[k] = v.to_i
+                end
               else
-                ret[k] = v.to_i
+                ret[k] = v
               end
             else
               ret[k] = v

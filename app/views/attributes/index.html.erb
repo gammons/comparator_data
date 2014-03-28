@@ -1,6 +1,6 @@
 <h1>Listing attributes</h1>
 
-<table>
+<table class='table table-bordered table-striped' id="sortable" data-update_url='<%=sort_attributes_path%>'>
   <thead>
     <tr>
       <th>Name</th>
@@ -16,7 +16,7 @@
 
   <tbody>
     <% @attributes.each do |attribute| %>
-      <tr>
+      <tr data-item_id="<%= attribute.id %>" class='item'>
         <td><%= attribute.name %></td>
         <td><%= attribute.key %></td>
         <td><%= attribute.compare %></td>

@@ -15,3 +15,5 @@
 //= require bootstrap
 //= require_tree .
 //= require init
+//= require jquery.ui.sortable
+//= require ./sort
