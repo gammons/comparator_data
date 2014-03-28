@@ -84,6 +84,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
+      @item.update(params.require(:item).permit(:image))
       @item.item_attributes = params[:item_attributes]
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }

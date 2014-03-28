@@ -76,3 +76,5 @@ gem "font-awesome-rails"
 gem "passenger"
 gem "bootstrap-sass"
 gem 'acts_as_list'
+gem 'paperclip'
+gem 'aws-sdk', '~> 1.5.7'

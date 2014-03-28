@@ -1,4 +1,4 @@
-<%= form_for(@item) do |f| %>
+<%= form_for @item, :html => {:multipart => true} do |f| %>
   <% if @item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -17,6 +17,10 @@
       <input class='form-control <%= attribute.key %>' type='text' name="item_attributes[<%= attribute.key -%>]" value="<%= @item.item_attributes[attribute.key] -%>" />
     </div>
   <% end -%>
+
+  <label>Image</label>
+  <%= image_tag @item.image.url %>
+  <%= f.file_field :image %>
 
   <div class="actions">
     <%= f.submit %>
